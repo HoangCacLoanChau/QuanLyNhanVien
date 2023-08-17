@@ -4,7 +4,6 @@ renderList(dsnv);
 function themNV() {
   var newNV = layThongTinTuForm();
   console.log("🚀 ~ themNV ~ newNV:", newNV);
-
   //validate
   var isValid =
     checkTK("tbTKNV", newNV.taiKhoan) &
@@ -30,6 +29,7 @@ function showThongTin(id) {
 }
 //edit employee
 function capNhat() {
+  resetmodalOnHide();
   var updateNV = layThongTinTuForm();
   var index = findById(updateNV.taiKhoan, dsnv);
   //validate
@@ -47,6 +47,7 @@ function capNhat() {
   dsnv[index] = updateNV;
   saveToLS("LIST", dsnv);
   renderList(dsnv);
+
   $("#myModal").modal("hide");
 }
 //delete employee
@@ -55,4 +56,37 @@ function xoaNV(id) {
   dsnv.splice(index, 1);
   saveToLS("LIST", dsnv);
   renderList(dsnv);
+}
+
+//filter
+function timTheoChucVu() {
+  var cv = document.getElementById("searchName").value;
+  var result = document.getElementById("tableDanhSach");
+  contentHTML = "";
+  dsnv.forEach((item) => {
+    if (item.chucVu == cv) {
+      contentHTML += `
+      <tr>
+      <td>${item.taiKhoan}</td>
+      <td>${item.hoTen}</td>
+      <td>${item.email}</td>
+      <td>${item.ngayLam}</td>
+      <td>${item.chucVu}</td>
+      <td>${item.tongLuong()}</td>
+      <td>${item.xepLoai()}</td>
+      <td>
+      <button class="btn btn-warning" onClick="showThongTin(${item.taiKhoan})">sửa</button>
+      <button class="btn btn-danger" onClick="xoaNV(${item.taiKhoan})">xoá</button>
+      </td>
+      </tr>`;
+    }
+  });
+  result.innerHTML = contentHTML;
+}
+
+function resetmodalOnHide() {
+  $("#myModal").on("hidden.bs.modal", function () {
+    $(this).find("form").trigger("reset");
+  });
+  document.getElementById("tknv").disabled = false;
 }

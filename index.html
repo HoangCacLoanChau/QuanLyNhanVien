@@ -124,6 +124,7 @@
                     id="btnThem"
                     data-toggle="modal"
                     data-target="#myModal"
+                    onclick="resetmodalOnHide()"
                   >
                     Thêm nhân viên
                   </button>
@@ -143,9 +144,9 @@
                       id="searchName"
                     />
                     <div class="input-group-prepend">
-                      <span class="input-group-text" id="btnTimNV"
-                        ><i class="fa fa-search"></i
-                      ></span>
+                      <button class="input-group-text" id="btnTimNV" onclick="timTheoChucVu()">
+                        <i class="fa fa-search"></i>
+                      </button>
                     </div>
                   </div>
                 </div>
