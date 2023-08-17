@@ -94,6 +94,9 @@ function checkChucVu(idErr, value) {
     case NV:
       document.getElementById(idErr).style.display = "none";
       return true;
+    case "all":
+      document.getElementById(idErr).style.display = "none";
+      return true;
     default:
       document.getElementById(idErr).style.display = "block";
       document.getElementById(idErr).innerHTML = `vui lòng chọn 1 chức vụ`;

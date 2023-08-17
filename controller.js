@@ -31,6 +31,28 @@ function renderList(list) {
   contentHTML = "";
   list.forEach((item) => {
     contentHTML += `
+      <tr>
+      <td>${item.taiKhoan}</td>
+      <td>${item.hoTen}</td>
+      <td>${item.email}</td>
+      <td>${item.ngayLam}</td>
+      <td>${item.chucVu}</td>
+      <td>${item.tongLuong()}</td>
+      <td>${item.xepLoai()}</td>
+      <td>
+      <button class="btn btn-warning" onClick="showThongTin(${item.taiKhoan})">sửa</button>
+      <button class="btn btn-danger" onClick="xoaNV(${item.taiKhoan})">xoá</button>
+      </td>
+      </tr>`;
+  });
+  result.innerHTML = contentHTML;
+}
+function renderSearch(list, cv) {
+  var result = document.getElementById("tableDanhSach");
+  contentHTML = "";
+  list.forEach((item) => {
+    if (item.chucVu == cv) {
+      contentHTML += `
     <tr>
     <td>${item.taiKhoan}</td>
     <td>${item.hoTen}</td>
@@ -44,6 +66,7 @@ function renderList(list) {
     <button class="btn btn-danger" onClick="xoaNV(${item.taiKhoan})">xoá</button>
     </td>
     </tr>`;
+    }
   });
   result.innerHTML = contentHTML;
 }

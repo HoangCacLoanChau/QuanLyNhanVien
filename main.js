@@ -29,7 +29,6 @@ function showThongTin(id) {
 }
 //edit employee
 function capNhat() {
-  resetmodalOnHide();
   var updateNV = layThongTinTuForm();
   var index = findById(updateNV.taiKhoan, dsnv);
   //validate
@@ -60,28 +59,14 @@ function xoaNV(id) {
 
 //filter
 function timTheoChucVu() {
-  var cv = document.getElementById("searchName").value;
-  var result = document.getElementById("tableDanhSach");
-  contentHTML = "";
-  dsnv.forEach((item) => {
-    if (item.chucVu == cv) {
-      contentHTML += `
-      <tr>
-      <td>${item.taiKhoan}</td>
-      <td>${item.hoTen}</td>
-      <td>${item.email}</td>
-      <td>${item.ngayLam}</td>
-      <td>${item.chucVu}</td>
-      <td>${item.tongLuong()}</td>
-      <td>${item.xepLoai()}</td>
-      <td>
-      <button class="btn btn-warning" onClick="showThongTin(${item.taiKhoan})">sửa</button>
-      <button class="btn btn-danger" onClick="xoaNV(${item.taiKhoan})">xoá</button>
-      </td>
-      </tr>`;
-    }
-  });
-  result.innerHTML = contentHTML;
+  var cv = document.querySelector("#chucvuSearch").value;
+  isValid = checkChucVu("tbChucVusearch", cv);
+  if (!isValid) return;
+  if (cv !== "all") {
+    renderSearch(dsnv, cv);
+  } else {
+    renderList(dsnv);
+  }
 }
 
 function resetmodalOnHide() {

@@ -137,18 +137,26 @@
               <div class="row mb-3">
                 <div class="col">
                   <div class="input-group">
-                    <input
+                    <!-- <input
                       type="text"
                       class="form-control"
                       placeholder="Loại nhân viên"
                       id="searchName"
-                    />
+                    /> -->
+                    <select class="form-control" id="chucvuSearch">
+                      <option value="chọn 1 chức vụ">Chọn chức vụ</option>
+                      <option value="all">Tất cả</option>
+                      <option value="Sếp">Sếp</option>
+                      <option value="Trưởng Phòng">Trưởng phòng</option>
+                      <option value="Nhân Viên">Nhân viên</option>
+                    </select>
                     <div class="input-group-prepend">
                       <button class="input-group-text" id="btnTimNV" onclick="timTheoChucVu()">
                         <i class="fa fa-search"></i>
                       </button>
                     </div>
                   </div>
+                  <span class="sp-thongbao text-left" id="tbChucVusearch"></span>
                 </div>
               </div>
               <table class="table table-bordered table-hover myTable">
